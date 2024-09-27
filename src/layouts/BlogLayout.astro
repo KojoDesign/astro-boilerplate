@@ -1,0 +1,72 @@
+---
+import { getEntries, type CollectionEntry, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+import FormattedDate from "@/components/FormattedDate.astro";
+import FormattedAuthors from "@/components/FormattedAuthors.astro";
+
+import BaseLayout from "./BaseLayout.astro";
+
+type Props = CollectionEntry<"blog">["data"] & { slug: string };
+
+const { title, subtitle, date, image, slug } = Astro.props;
+
+const authors = await getEntries(Astro.props.authors);
+---
+
+<BaseLayout title={title} image={image.src} description={subtitle}>
+  <main>
+    <article class="mx-auto max-w-3xl px-8 py-32">
+      <div
+        class="flex flex-row items-center justify-start gap-4 overflow-scroll pt-8 text-sm font-medium text-muted"
+      >
+        <a class="whitespace-nowrap hover:text-subtle" href="/blog">
+          Empirical Blog
+        </a>
+        /
+        <a class="whitespace-nowrap text-primary" href={`/blog/${slug}`}>
+          {title}
+        </a>
+      </div>
+      <div
+        class="prose prose-base max-w-none py-8 text prose-headings:font-semibold prose-h1:mt-8 prose-h1:text-3xl prose-img:mx-auto prose-img:rounded-lg prose-hr:mb-8"
+      >
+        <div class="title">
+          <Typography variant="label" size="lg" color="subtle">
+            <FormattedDate date={date} />
+          </Typography>
+
+          <Typography variant="display" size="md" className="not-prose mb-8">
+            {title}
+          </Typography>
+
+          <div class="not-prose flex flex-row items-center gap-4">
+            <div class="flex flex-row items-center -space-x-4">
+              {
+                authors.map((author) => (
+                  <Image
+                    src={author.data.image}
+                    alt={author.data.name}
+                    class="not-prose h-10 w-10 rounded-full border-2 border-white"
+                  />
+                ))
+              }
+            </div>
+
+            <Typography
+              variant="body"
+              className="font-medium"
+              size="md"
+              color="subtle"
+            >
+              <FormattedAuthors includeLinks authors={authors} />
+            </Typography>
+          </div>
+
+          <hr class="not-prose mt-8" />
+        </div>
+        <slot />
+      </div>
+    </article>
+  </main>
+</BaseLayout>

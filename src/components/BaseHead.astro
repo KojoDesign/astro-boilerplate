@@ -1,0 +1,61 @@
+---
+import "../styles/global.css";
+
+import { SITE_TITLE } from "@/consts";
+
+import { SEO } from "astro-seo";
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  templated?: boolean;
+  authors?: string[];
+  publishedTime?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const {
+  title,
+  templated,
+  authors,
+  publishedTime,
+  description,
+  image = "/og.png",
+} = Astro.props;
+---
+
+<meta charset="utf-8" />
+
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<link rel="icon" href="/favicon.ico" />
+
+<SEO
+  title={title}
+  titleTemplate={!templated ? "%s" : `%s | ${SITE_TITLE}`}
+  description={description}
+  canonical={canonicalURL.href}
+  openGraph={{
+    basic: {
+      title,
+      type: "website",
+      url: Astro.url,
+      image: new URL(image, Astro.url).href,
+    },
+    optional: {
+      description,
+    },
+    article: {
+      authors,
+      publishedTime,
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    title,
+    description,
+    image: new URL(image, Astro.url).href,
+  }}
+/>

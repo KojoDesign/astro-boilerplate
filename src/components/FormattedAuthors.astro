@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  authors: CollectionEntry<"authors">[];
+  includeLinks?: boolean;
+}
+
+const { includeLinks, authors } = Astro.props;
+
+const names = authors.map(({ data }) => data.name);
+
+function getURL(author: (typeof authors)[0]) {
+  return `https://linkedin.com/in/${author.data.linkedin}`;
+}
+---
+
+<Fragment>
+  {
+    names.slice(0, -1).map((name, idx) =>
+      includeLinks ? (
+        <a class="hover:text-primary" href={getURL(authors[idx])}>
+          {name}
+        </a>
+      ) : (
+        name
+      )
+    )
+  }
+  {names.length > 1 ? " and " : ""}
+  {
+    names.slice(-1).map((name, idx) =>
+      includeLinks ? (
+        <a
+          class="hover:text-primary"
+          href={getURL(authors[names.length - 1 + idx])}
+        >
+          {name}
+        </a>
+      ) : (
+        name
+      )
+    )
+  }
+</Fragment>

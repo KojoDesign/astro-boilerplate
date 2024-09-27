@@ -1,0 +1,19 @@
+---
+import "@fontsource-variable/manrope";
+
+import BaseHead, {
+  type Props as BaseHeadProps,
+} from "@/components/BaseHead.astro";
+
+export interface Props extends BaseHeadProps {}
+---
+
+<!doctype html>
+<html lang="en" class="relative">
+  <head>
+    <BaseHead {...Astro.props} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
