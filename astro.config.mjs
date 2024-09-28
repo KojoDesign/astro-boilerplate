@@ -12,13 +12,13 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "http://example.com",
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),
     mdx(),
     sitemap(),
   ],
-
-  output: "server",
+  output: "hybrid",
   adapter: vercel(),
 });
