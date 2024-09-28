@@ -1,0 +1,4 @@
+{
+  "*.{js,jsx,ts,tsx}": ["biome lint", "prettier --write"],
+  "*.{html,postcss,css}": "prettier --write"
+}
