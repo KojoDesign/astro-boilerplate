@@ -1,18 +1,28 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
+import { FileSystemIconLoader } from "unplugin-icons/loaders";
 
 import mdx from "@astrojs/mdx";
-
+import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-
+import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
+import Icons from "unplugin-icons/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "http://example.com",
+  vite: {
+    plugins: [
+      Icons({
+        compiler: "jsx",
+        customCollections: {
+          assets: "./src/assets/svg",
+        },
+      }),
+    ],
+  },
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),
