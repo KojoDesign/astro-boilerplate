@@ -12,7 +12,7 @@ import Icons from "unplugin-icons/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "http://example.com",
+  site: "http://TODO.com",
   vite: {
     plugins: [
       Icons({

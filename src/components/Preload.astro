@@ -1,0 +1,11 @@
+---
+interface Props {
+  href: string;
+  as?: string;
+  crossorigin?: string;
+}
+
+const { href, as = "fetch", crossorigin = "anonymous" } = Astro.props;
+---
+
+<link rel="preload" href={href} as={as} crossorigin={crossorigin} />
