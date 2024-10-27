@@ -6,6 +6,7 @@ import FormattedAuthors from "@/components/FormattedAuthors.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 
 import { Typography } from "@/components/ui/Typography";
+import { BLOG_TITLE } from "@/consts";
 import BaseLayout from "./BaseLayout.astro";
 
 type Props = CollectionEntry<"blog">["data"] & { slug: string };
@@ -22,7 +23,7 @@ const authors = await getEntries(Astro.props.authors);
         class="flex flex-row items-center justify-start gap-4 overflow-scroll pt-8 text-sm font-medium text-muted"
       >
         <a class="whitespace-nowrap hover:text-subtle" href="/blog">
-          Empirical Blog
+          {BLOG_TITLE}
         </a>
         /
         <a class="whitespace-nowrap text-primary" href={`/blog/${slug}`}>
