@@ -1,17 +1,18 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-	"formatter": {
-		"enabled": false
-	},
-	"linter": {
-		"enabled": true,
-    "ignore": [
-      "node_modules",
-      "dist",
-      ".astro"
-    ]
-	},
-	"organizeImports": {
-		"enabled": true
-	}
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "formatter": {
+    "enabled": false
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "suspicious": {
+        "noExplicitAny": "warn"
+      }
+    },
+    "ignore": ["node_modules", "dist", ".astro"]
+  },
+  "organizeImports": {
+    "enabled": true
+  }
 }

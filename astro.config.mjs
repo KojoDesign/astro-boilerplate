@@ -14,6 +14,7 @@ import Icons from "unplugin-icons/vite";
 export default defineConfig({
   site: "http://TODO.com",
   vite: {
+    assetsInclude: [/\.riv$/],
     plugins: [
       Icons({
         compiler: "jsx",
