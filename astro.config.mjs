@@ -26,7 +26,7 @@ export default defineConfig({
   },
   integrations: [
     react(),
-    tailwind({ applyBaseStyles: false }),
+    // tailwind({ applyBaseStyles: false }),
     mdx(),
     sitemap(),
   ],
