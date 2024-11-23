@@ -9,7 +9,7 @@ import {
   type UseRiveParameters,
   useRive,
 } from "@rive-app/react-canvas";
-import { animate } from "framer-motion";
+import { animate } from "motion";
 
 RuntimeLoader.setWasmUrl(RIVE_WASM_URL);
 
