@@ -19,7 +19,7 @@ export default defineConfig({
       Icons({
         compiler: "jsx",
         customCollections: {
-          assets: "./src/assets/svg",
+          assets: FileSystemIconLoader("./src/assets/svg"),
         },
       }),
     ],
