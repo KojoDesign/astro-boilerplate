@@ -6,6 +6,13 @@ export default {
   darkMode: "class",
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
+    extend: {
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
     fontFamily: {
       sans: "var(--font-sans)",
       display: "var(--font-display)",
@@ -54,11 +61,6 @@ export default {
       screens: {
         "2xl": "1400px",
       },
-    },
-    borderRadius: {
-      lg: "var(--radius)",
-      md: "calc(var(--radius) - 2px)",
-      sm: "calc(var(--radius) - 4px)",
     },
     colors: {
       background: "hsl(var(--background))",
