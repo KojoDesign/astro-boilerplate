@@ -3,5 +3,8 @@
   "prettier.configPath": ".prettierrc.mjs",
   "editor.codeActionsOnSave": {
     "source.organizeImports.biome": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

@@ -3,8 +3,6 @@
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-animate";
 
-@plugin "../plugins/material-typography";
-
 @variant dark (&:where(.dark, .dark *));
 
 @utility container {
