@@ -3,9 +3,16 @@ import type { Config } from "tailwindcss";
 import { scale } from "@kojodesign/miniscale";
 
 export default {
-  darkMode: ["class"],
+  darkMode: "class",
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
+    extend: {
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
     fontFamily: {
       sans: "var(--font-sans)",
       display: "var(--font-display)",
@@ -55,11 +62,6 @@ export default {
         "2xl": "1400px",
       },
     },
-    borderRadius: {
-      lg: "var(--radius)",
-      md: "calc(var(--radius) - 2px)",
-      sm: "calc(var(--radius) - 4px)",
-    },
     colors: {
       background: "hsl(var(--background))",
       foreground: "hsl(var(--foreground))",
@@ -103,9 +105,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    require("@tailwindcss/typography"),
-    require("@savvywombat/tailwindcss-grid-areas"),
-  ],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

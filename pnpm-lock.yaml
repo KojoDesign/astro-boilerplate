@@ -72,9 +72,6 @@ importers:
       '@kojodesign/miniscale':
         specifier: ^1.4.1
         version: 1.4.1
-      '@savvywombat/tailwindcss-grid-areas':
-        specifier: ^4.0.0
-        version: 4.0.0(tailwindcss@4.0.0-beta.2)
       '@svgr/core':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.7.2)
@@ -863,12 +860,6 @@ packages:
     resolution: {integrity: sha512-vliZLrDmYKyaUoMzEbMTg2JkerfBjn03KmAw9CykO0Zzkzoyd7o3iZNam/TpyWNjNT+Cz2iO3P9Smv2wgrR+Eg==}
     cpu: [x64]
     os: [win32]
-
-  '@savvywombat/tailwindcss-grid-areas@4.0.0':
-    resolution: {integrity: sha512-gjEGTltsGfy+AJQqhkuQKQGp/SB0XzXT3ZNmrOfuwPGF5DLg5GsN5XHiaYhudMvmBwRp+9k6wrZhHBM0lhEgJA==}
-    engines: {node: '>=16.20.2'}
-    peerDependencies:
-      tailwindcss: ^3.0.1
 
   '@shikijs/core@1.23.1':
     resolution: {integrity: sha512-NuOVgwcHgVC6jBVH5V7iblziw6iQbWWHrj5IlZI3Fqu2yx9awH7OIQkXIcsHsUmY19ckwSgUMgrqExEyP5A0TA==}
@@ -4284,10 +4275,6 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.27.3':
     optional: true
-
-  '@savvywombat/tailwindcss-grid-areas@4.0.0(tailwindcss@4.0.0-beta.2)':
-    dependencies:
-      tailwindcss: 4.0.0-beta.2
 
   '@shikijs/core@1.23.1':
     dependencies:

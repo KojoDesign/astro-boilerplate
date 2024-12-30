@@ -134,6 +134,10 @@ const tagVariants = cva("", {
       lg: "",
     },
   },
+  defaultVariants: {
+    variant: "body",
+    size: "md",
+  },
   compoundVariants: [
     {
       variant: "display",

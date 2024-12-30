@@ -1,11 +1,27 @@
 ---
-interface Props {
+export interface Props {
   href: string;
   as?: string;
   crossorigin?: string;
 }
 
-const { href, as = "fetch", crossorigin = "anonymous" } = Astro.props;
+const asMap = {
+  css: "style",
+  js: "script",
+  woff2: "font",
+};
+
+const { href, crossorigin = "anonymous" } = Astro.props;
+
+const ext = href.split(".").pop();
+const as = Astro.props.as ?? asMap[ext as keyof typeof asMap];
+const type = Astro.props.type ?? (as ? `${as}/${ext}` : undefined);
 ---
 
-<link rel="preload" href={href} as={as} crossorigin={crossorigin} />
+<link
+  rel="preload"
+  href={href}
+  type={type}
+  as={as ?? "fetch"}
+  crossorigin={crossorigin}
+/>
