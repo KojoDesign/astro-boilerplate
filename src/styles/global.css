@@ -18,8 +18,13 @@
   /* ---------------------------------- Fonts --------------------------------- */
 
   --font-*: initial;
-  --font-sans: Inter, Arial, Helvetica, sans-serif;
-  --font-display: Inter, Arial, Helvetica, sans-serif;
+  --font-sans: Inter Variable, Arial, Helvetica, sans-serif;
+  --font-display: Inter Variable, Arial, Helvetica, sans-serif;
+
+  /* -------------------------------- Text Size ------------------------------- */
+
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: var(--text-xs--line-height);
 
   /* --------------------------------- Colors --------------------------------- */
 

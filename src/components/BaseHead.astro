@@ -1,4 +1,6 @@
 ---
+import "@fontsource-variable/inter";
+
 import "../styles/global.css";
 
 import { SEO } from "astro-seo";
@@ -6,6 +8,8 @@ import { SEO } from "astro-seo";
 import { RIVE_WASM_URL, SITE_TITLE } from "@/consts";
 
 import Preload, { type Props as PreloadProps } from "./Preload.astro";
+
+import inter from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
 
 export interface Props {
   title: string;
@@ -28,6 +32,8 @@ const {
   description,
   image = "/og.png",
 } = Astro.props;
+
+preloadAssets.push(inter);
 ---
 
 {
