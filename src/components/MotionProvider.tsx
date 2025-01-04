@@ -4,7 +4,9 @@ interface MotionProviderProps {
   children?: React.ReactNode | React.ReactNode[];
 }
 
-export function MotionProvider({ children }: MotionProviderProps): JSX.Element {
+export function MotionProvider({
+  children,
+}: MotionProviderProps): React.ReactElement {
   return (
     <LazyMotion strict features={domAnimation}>
       {children}
