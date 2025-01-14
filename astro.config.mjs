@@ -1,7 +1,10 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-import { FileSystemIconLoader } from "unplugin-icons/loaders";
+import {
+  ExternalPackageIconLoader,
+  FileSystemIconLoader,
+} from "unplugin-icons/loaders";
 
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";

@@ -15,6 +15,33 @@
 /* -------------------------------------------------------------------------- */
 
 @theme {
+  /* ------------------------------- Animations ------------------------------- */
+
+  @keyframes carousel-left {
+    0%: {
+      transform: translateX(0);
+    }
+    ,
+    100%: {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes carousel-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  --animate-carousel-left: carousel-left calc(var(--carousel-count) * 16s)
+    linear infinite;
+
+  --animate-carousel-right: carousel-right calc(var(--carousel-count) * 16s)
+    linear infinite;
+
   /* ---------------------------------- Fonts --------------------------------- */
 
   --font-*: initial;
