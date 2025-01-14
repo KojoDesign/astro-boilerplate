@@ -1,0 +1,36 @@
+---
+interface Props {
+  amount?: number;
+}
+
+const { amount = 0.3 } = Astro.props;
+---
+
+<in-view data-amount={amount}>
+  <slot />
+</in-view>
+
+<script>
+  import { inView } from "motion";
+
+  class InView extends HTMLElement {
+    constructor() {
+      super();
+
+      inView(
+        this,
+        () => {
+          this.setAttribute("data-in-view", "");
+          return () => this.removeAttribute("data-in-view");
+        },
+        {
+          ...(this.dataset.amount && {
+            amount: parseFloat(this.dataset.amount),
+          }),
+        },
+      );
+    }
+  }
+
+  customElements.define("in-view", InView);
+</script>
