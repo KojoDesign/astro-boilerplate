@@ -13,7 +13,7 @@ export function NavigationMenu({ children, mobile }: NavigationMenuProps) {
       <div className="contents laptop:hidden">{children}</div>
       <div className="hidden laptop:contents">
         <Sheet>
-          <SheetTrigger className="flex justify-center items-center">
+          <SheetTrigger className="flex cursor-pointer justify-center items-center">
             <Menu className="size-6" />
           </SheetTrigger>
           <SheetContent>{mobile ?? children}</SheetContent>
