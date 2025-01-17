@@ -9,8 +9,8 @@ To get started, simply hit the "Use This Template" button on this repo to start 
 ### Building Blocks
 
 - 📦 **[pnpm](https://pnpm.io)** for package management, as it's much faster and more performant than NPM. It's configured using Corepack, so you should be able to install it via `corepack enable` (this command comes with Node).
-- 🚀 **[Astro](https://astro.build)**, a framework for creating highly-versatile and extremely high-performance webpages. It comes packed with a boatload of features such as partial hydration, content collections, and server endpoints. [See here](https://docs.astro.build/en/concepts/why-astro/) for more.
-- ⚛️ **[React](https://react.dev)** for creating interactive component highlands that leverage React's booming ecosystem.
+- 🚀 **[Astro](https://astro.build)**, a framework for creating highly-versatile and high-performance webpages. It comes packed with a boatload of features such as partial hydration, content collections, and server endpoints. [See here](https://docs.astro.build/en/concepts/why-astro/) for more.
+- ⚛️ **[React](https://react.dev)** for creating interactive component islands that leverage React's booming ecosystem.
 - 👷 **[TypeScript](https://www.typescriptlang.org/)** for writing type-safe, maintainable code.
 
 ### UI & Styling
@@ -19,11 +19,11 @@ To get started, simply hit the "Use This Template" button on this repo to start 
 - 🔠 **[Fontsource](https://fontsource.org/)** for loading custom fonts. These can be preloaded via the `preload` prop of [`BaseLayout`](src/layouts/BaseLayout.astro).
 - 📥 **[shadcn-ui](https://ui.shadcn.com/)** for rapidly adding pre-configured UI components to your website.
 - 🦄 **[unplugin-icons](https://github.com/unplugin/unplugin-icons)** for easily inlining thousands of on-demand icons in Astro and React components.
-- ⚒️ Pre-built custom components such as [Typography](src/components/ui/Typography.tsx) and [Stack](src/components/ui/Stack.tsx).
+- ⚒️ Custom component primitives such as [Typography](src/components/ui/Typography.tsx) and [Stack](src/components/ui/Stack.tsx).
 
 ### Animations
 
-- 🚥 **[Rive](https://rive.app)** for embedding highly performant, interactive animations on your site.
+- 🚥 **[Rive](https://rive.app)** for embedding performant, interactive animations on your site.
 - 🏃 **[Motion](https://motion.dev)** (formerly Framer Motion) for creating realistic spring animations in JavaScript.
 
 ### Developer Experience
