@@ -32,16 +32,6 @@ To get started, simply hit the "Use This Template" button on this repo to start 
 - 🎨 **[Prettier](prettier.io)** for opinionated formatting (only used because Biome's HTML formatting is [incomplete](https://biomejs.dev/internals/language-support/)).
 - 🐶 **[Husky](https://github.com/typicode/husky)** with **[lint-staged](https://github.com/lint-staged/lint-staged)** to automatically run linting on new commits.
 
-## Opinionated Decisions
-
-This repo makes a few strong changes to how Tailwind operates that are worth being aware of.
-
-These decisions may change in the future, but for now this is how the boilerplate is configured:
-
-- **The entire default palette of Tailwind has been replaced by _only_ the color names specified in [`global.css`](src/styles/global.css).** This helps prevent the use of off-brand or incorrect colors throughout the project.
-- **The default Tailwind type scale has been swapped out for [Material Design 3's type scale](https://m3.material.io/styles/typography/overview).** This allows us to closely align the font sizes with the typography variants specified in [`Typography.tsx`](src/components/ui/Typography.tsx).
-- **The default `lg:`, `md:` and `sm:` breakpoint variants have been swapped out for `phone:`, `tablet:` and `laptop:` variants.** Unlike the defaults, these apply to screens matching the current breakpoint _and below_. For example, `tablet:` will apply to only tablet and phone screens.
-
 ## Guides
 
 - [Best Practices](docs/best-practices.md)
