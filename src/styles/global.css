@@ -1,147 +1,15 @@
 @import "tailwindcss";
 
+@import "./theme.css";
+@import "./utilities.css";
+@import "./animate.css";
+
 @plugin "@tailwindcss/typography";
-@plugin "tailwindcss-animate";
 
 @variant dark (&:where(.dark, .dark *));
 @variant in-view (:where(*:is([data-in-view])) &);
 
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                    Theme                                   */
-/* -------------------------------------------------------------------------- */
-
-@theme {
-  /* ------------------------------- Animations ------------------------------- */
-
-  @keyframes carousel-left {
-    0%: {
-      transform: translate3d(0, 0, 0);
-    }
-    ,
-    100%: {
-      transform: translate3d(-100%, 0, 0);
-    }
-  }
-
-  @keyframes carousel-right {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(100%, 0, 0);
-    }
-  }
-
-  @keyframes accordion-down {
-    from: {
-      height: 0;
-    }
-    to: {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-
-  @keyframes accordion-up {
-    from: {
-      height: var(--radix-accordion-content-height);
-    }
-    to: {
-      height: 0;
-    }
-  }
-
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
-  --animate-carousel-left: carousel-left calc(var(--carousel-count) * 16s)
-    linear infinite;
-
-  --animate-carousel-right: carousel-right calc(var(--carousel-count) * 16s)
-    linear infinite;
-
-  /* ---------------------------------- Fonts --------------------------------- */
-
-  --font-*: initial;
-  --font-sans: Inter Variable, Arial, Helvetica, sans-serif;
-  --font-display: Inter Variable, Arial, Helvetica, sans-serif;
-
-  /* -------------------------------- Text Size ------------------------------- */
-
-  --text-2xs: 0.625rem;
-  --text-2xs--line-height: var(--text-xs--line-height);
-
-  /* --------------------------------- Colors --------------------------------- */
-
-  --color-background: var(--color-zinc-50);
-  --color-foreground: var(--color-zinc-950);
-  --color-card: var(--color-white);
-  --color-card-foreground: var(--color-foreground);
-  --color-popover: var(--color-white);
-  --color-popover-foreground: var(--color-foreground);
-  --color-primary: var(--color-blue-600);
-  --color-primary-foreground: var(--color-blue-50);
-  --color-secondary: var(--color-zinc-200);
-  --color-secondary-foreground: var(--color-zinc-600);
-  --color-muted: var(--color-zinc-300);
-  --color-muted-foreground: var(--color-zinc-300);
-  --color-accent: var(--color-purple-500);
-  --color-accent-foreground: var(--color-purple-50);
-  --color-destructive: var(--color-red-500);
-  --color-destructive-foreground: var(--color-red-50);
-  --color-border: color-mix(in oklab, var(--color-black) 10%, transparent);
-  --color-input: var(--color-border);
-  --color-ring: var(--color-primary);
-  --color-chart-1: hsl(12 76% 61%);
-  --color-chart-2: hsl(173 58% 39%);
-  --color-chart-3: hsl(197 37% 24%);
-  --color-chart-4: hsl(43 74% 66%);
-  --color-chart-5: hsl(27 87% 67%);
-
-  /* ------------------------------ Border Radius ----------------------------- */
-
-  --radius: 0.5rem;
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-}
-
 @layer base {
-  /* -------------------------------------------------------------------------- */
-  /*                                  Dark Mode                                 */
-  /* -------------------------------------------------------------------------- */
-  .dark {
-    --color-background: var(--color-zinc-950);
-    --color-foreground: var(--color-zinc-50);
-    --color-card: var(--color-zinc-800);
-    --color-card-foreground: var(--color-zinc-50);
-    --color-popover: var(--color-zinc-800);
-    --color-popover-foreground: var(--color-zinc-50);
-    --color-primary: var(--color-blue-500);
-    --color-primary-foreground: var(--color-blue-50);
-    --color-secondary: var(--color-zinc-700);
-    --color-secondary-foreground: var(--color-zinc-300);
-    --color-muted: var(--color-zinc-600);
-    --color-muted-foreground: var(--color-zinc-600);
-    --color-accent: var(--color-purple-500);
-    --color-accent-foreground: var(--color-purple-50);
-    --color-destructive: var(--color-red-500);
-    --color-destructive-foreground: var(--color-red-50);
-    --color-border: color-mix(in oklab, var(--color-white) 10%, transparent);
-    --color-input: var(--color-border);
-    --color-ring: var(--color-primary);
-    --color-chart-1: hsl(220 70% 50%);
-    --color-chart-2: hsl(160 60% 45%);
-    --color-chart-3: hsl(30 80% 55%);
-    --color-chart-4: hsl(280 65% 60%);
-    --color-chart-5: hsl(340 75% 55%);
-  }
-
   * {
     @apply border-border;
   }
