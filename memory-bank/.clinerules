@@ -1,0 +1,64 @@
+# Cline Rules for Astro Boilerplate
+
+## Project Patterns
+
+### Component Organization
+- Astro components (.astro) are preferred for static content
+- React components (.tsx) are used for interactive elements
+- UI components are located in src/components/ui
+- Layout components are in src/layouts
+- Page components are in src/pages
+- Fragment components (composed sections) are in src/fragments
+
+### Naming Conventions
+- PascalCase for component names
+- camelCase for variables and functions
+- Use descriptive names that indicate purpose
+
+### Import Patterns
+- Always use `@/` alias instead of relative paths when importing from src
+- Group imports by type (framework, components, utilities)
+- Only use relative imports for files in the same directory
+
+### Styling Approach
+- Use Tailwind utility classes as primary styling method
+- Follow shadcn-ui naming conventions for theme variables
+- Custom CSS should be minimal and placed in src/styles
+
+### Client Directives
+- Use `client:load` for components needed immediately
+- Use `client:only="react"` for Rive components
+- Be mindful of hydration costs
+
+## Development Workflow
+
+### Adding UI Components
+- Use `pnpm ui add [component-name]` to add shadcn-ui components
+- Rename components to PascalCase after adding
+- Review and adjust as needed for project requirements
+
+### Content Management
+- Blog content should use content collections
+- Author information should be linked to blog posts
+- Use Zod schemas for content validation
+
+### Performance Considerations
+- Preload critical fonts
+- Optimize images using Astro's image tools
+- Minimize JavaScript with partial hydration
+
+## Known Challenges
+
+### React in Astro
+- React Context doesn't work across Astro islands
+- `asChild` prop doesn't work with Astro slots
+- Can't use Astro's Image component in React
+
+### Animation Limitations
+- Rive animations require client-side only rendering
+- Complex animations may need Motion (formerly Framer Motion)
+
+## User Preferences
+- Prefer Astro components when possible
+- Use TypeScript for type safety
+- Follow best practices documented in docs/best-practices.md
