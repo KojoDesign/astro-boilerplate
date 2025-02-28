@@ -14,7 +14,7 @@
     "prepare": "husky"
   },
   "engines": {
-    "node": "^20.0.0"
+    "node": "^22.0.0"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.1.1",
@@ -23,31 +23,31 @@
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-slot": "^1.1.2",
-    "@rive-app/canvas": "^2.26.3",
-    "@rive-app/react-canvas": "^4.18.2",
-    "astro": "^5.3.0",
+    "@rive-app/react-webgl2": "^4.18.3",
+    "@rive-app/webgl2": "^2.26.4",
+    "astro": "^5.4.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "motion": "^12.4.5",
+    "motion": "^12.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sharp": "^0.33.5",
-    "tailwind-merge": "^3.0.1",
+    "tailwind-merge": "^3.0.2",
     "typescript": "^5.7.3"
   },
-  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b",
+  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b",
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.0.8",
-    "@astrojs/react": "^4.2.0",
+    "@astrojs/mdx": "^4.1.0",
+    "@astrojs/react": "^4.2.1",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^6.0.0",
-    "@astrojs/vercel": "^8.0.7",
+    "@astrojs/vercel": "^8.1.0",
     "@biomejs/biome": "^1.9.4",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
-    "@tailwindcss/postcss": "4.0.7",
+    "@tailwindcss/postcss": "4.0.9",
     "@tailwindcss/typography": "^0.5.16",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -57,11 +57,11 @@
     "lint-staged": "^15.4.3",
     "postcss": "^8.5.3",
     "postcss-easings": "^4.0.0",
-    "prettier": "^3.5.1",
+    "prettier": "^3.5.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "react-compiler-runtime": "19.0.0-beta-e552027-20250112",
-    "tailwindcss": "4.0.7",
+    "tailwindcss": "4.0.9",
     "unplugin-icons": "^22.1.0"
   }
 }

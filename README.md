@@ -41,7 +41,6 @@ To get started, simply hit the "Use This Template" button on this repo to start 
 - [Using icons & SVGs](docs/icons.md)
 - [Using Motion](docs/motion.md)
 - [Using Rive](docs/rive.md)
-- [Deploying](docs/deploying.md)
 
 ### Using Astro
 
