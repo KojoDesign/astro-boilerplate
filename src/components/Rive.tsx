@@ -8,7 +8,7 @@ import {
   RuntimeLoader,
   type UseRiveParameters,
   useRive,
-} from "@rive-app/react-canvas";
+} from "@rive-app/react-webgl2";
 import { animate } from "motion";
 
 RuntimeLoader.setWasmUrl(RIVE_WASM_URL);
