@@ -1,14 +1,13 @@
-import { defineConfig } from "astro/config";
-import { FileSystemIconLoader } from "unplugin-icons/loaders";
-
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
-import icons from "unplugin-icons/vite";
+import { defineConfig } from "astro/config";
 import favicons from "astro-favicons";
 import robots from "astro-robots";
+import { FileSystemIconLoader } from "unplugin-icons/loaders";
+import icons from "unplugin-icons/vite";
 
 const ORIGIN = "TODO.com";
 
@@ -18,7 +17,9 @@ export default defineConfig({
   vite: {
     assetsInclude: [/\.riv$/],
     plugins: [
+      // @ts-expect-error https://github.com/withastro/astro/issues/14030
       tailwindcss(),
+      // @ts-expect-error
       icons({
         compiler: "jsx",
         customCollections: {

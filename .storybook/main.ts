@@ -3,7 +3,10 @@ import { FileSystemIconLoader } from "unplugin-icons/loaders";
 import { mergeConfig } from "vite";
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: [
+    "../src/stories/**/*.mdx",
+    "../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
   addons: [
     "@chromatic-com/storybook",
     "@storybook/addon-docs",
@@ -28,6 +31,7 @@ const config: StorybookConfig = {
       ],
     });
   },
+
   framework: {
     name: "@storybook/react-vite",
     options: {},
