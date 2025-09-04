@@ -1,23 +1,48 @@
+import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+const carouselVariants = cva(
+  [
+    "relative flex w-max gap-[--spacing(var(--gap))]",
+    "*:data-[slot=clone]:absolute *:data-[slot=clone]:top-0 *:data-[slot=clone]:flex *:data-[slot=clone]:gap-[--spacing(var(--gap))]",
+  ],
+  {
+    variants: {
+      direction: {
+        left: "animate-carousel-left pr-[--spacing(var(--gap))] *:data-[slot=clone]:right-0 *:data-[slot=clone]:translate-x-full",
+        right:
+          "animate-carousel-right pl-[--spacing(var(--gap))] *:data-[slot=clone]:left-0 *:data-[slot=clone]:-translate-x-full",
+        up: "animate-carousel-up pb-[--spacing(var(--gap))] *:data-[slot=clone]:bottom-0 *:data-[slot=clone]:translate-y-full",
+        down: "animate-carousel-down pt-[--spacing(var(--gap))] *:data-[slot=clone]:top-0 *:data-[slot=clone]:-translate-y-full",
+      },
+    },
+    compoundVariants: [
+      {
+        direction: ["left", "right"],
+        className: "flex-row *:data-[slot=clone]:flex-row",
+      },
+      {
+        direction: ["up", "down"],
+        className: "flex-col *:data-[slot=clone]:flex-col",
+      },
+    ],
+  },
+);
 
-export type CarouselDirection = "left" | "right";
-
-export interface CarouselProps {
-  direction?: CarouselDirection;
+export interface CarouselProps extends VariantProps<typeof carouselVariants> {
   className?: string;
-  gap: number;
+  gap?: number;
+  duration?: number;
   children: React.ReactNode;
 }
 
 export function Carousel({
   direction = "left",
   className,
+  duration = 16,
   children,
-  gap,
+  gap = 4,
 }: CarouselProps) {
-  const em = gap / 4;
   const count = React.Children.count(children);
 
   return (
@@ -25,27 +50,15 @@ export function Carousel({
       style={
         {
           "--carousel-count": count,
-          "--gap": `${em}em`,
+          "--gap": `${gap}`,
+          "--carousel-duration": `${duration}s`,
         } as React.CSSProperties
       }
       className={className}
     >
-      <div
-        className={cn("flex relative flex-row w-max gap-[var(--gap)]", {
-          "animate-carousel-left pr-[var(--gap)]": direction === "left",
-          "animate-carousel-right pl-[var(--gap)]": direction === "right",
-        })}
-      >
+      <div className={carouselVariants({ direction })} data-slot="carousel">
         {children}
-        <div
-          className={cn("flex flex-row absolute top-0", {
-            "left-0 -translate-x-full": direction === "right",
-            "right-0 translate-x-full": direction === "left",
-          })}
-          style={{ gap: `${em}em` }}
-        >
-          {children}
-        </div>
+        <div data-slot="clone">{children}</div>
       </div>
     </div>
   );

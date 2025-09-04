@@ -90,17 +90,14 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-}
 
-@theme {
   /* ------------------------------- Animations ------------------------------- */
 
   @keyframes carousel-left {
     0%: {
       transform: translate3d(0, 0, 0);
     }
-    ,
-    100%: {
+    100% {
       transform: translate3d(-100%, 0, 0);
     }
   }
@@ -114,12 +111,38 @@
     }
   }
 
-  --animate-carousel-left: carousel-left calc(var(--carousel-count) * 16s)
-    linear infinite;
+  @keyframes carousel-up {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, -100%, 0);
+    }
+  }
 
-  --animate-carousel-right: carousel-right calc(var(--carousel-count) * 16s)
-    linear infinite;
+  @keyframes carousel-down {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 100%, 0);
+    }
+  }
 
+  --animate-carousel-left: carousel-left
+    calc(var(--carousel-count) * var(--carousel-duration)) linear infinite;
+
+  --animate-carousel-right: carousel-right
+    calc(var(--carousel-count) * var(--carousel-duration)) linear infinite;
+
+  --animate-carousel-up: carousel-up
+    calc(var(--carousel-count) * var(--carousel-duration)) linear infinite;
+
+  --animate-carousel-down: carousel-down
+    calc(var(--carousel-count) * var(--carousel-duration)) linear infinite;
+}
+
+@theme {
   /* ---------------------------------- Fonts --------------------------------- */
 
   --font-*: initial;
