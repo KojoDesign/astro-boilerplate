@@ -28,7 +28,7 @@
 }
 
 @utility animate-* {
-  --tw-animation-index: --value(number);
+  --tw-animation-index: --value(number, [number]);
   --tw-animation-delay: calc(
     var(--tw-animation-stagger-from, 0s) +
       (var(--tw-animation-stagger) * var(--tw-animation-index))
