@@ -1,5 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import * as React from "react";
+import type * as React from "react";
+
+import { cssVars } from "@/lib/utils";
 
 const carouselVariants = cva(
   [
@@ -39,23 +41,12 @@ export interface CarouselProps extends VariantProps<typeof carouselVariants> {
 export function Carousel({
   direction = "left",
   className,
-  duration = 16,
+  duration = 30,
   children,
   gap = 4,
 }: CarouselProps) {
-  const count = React.Children.count(children);
-
   return (
-    <div
-      style={
-        {
-          "--carousel-count": count,
-          "--gap": `${gap}`,
-          "--carousel-duration": `${duration}s`,
-        } as React.CSSProperties
-      }
-      className={className}
-    >
+    <div style={cssVars({ gap, duration })} className={className}>
       <div className={carouselVariants({ direction })} data-slot="carousel">
         {children}
         <div data-slot="clone">{children}</div>

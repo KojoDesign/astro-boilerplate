@@ -129,17 +129,10 @@
     }
   }
 
-  --animate-carousel-left: carousel-left
-    calc(var(--carousel-count) * var(--carousel-duration)) linear infinite;
-
-  --animate-carousel-right: carousel-right
-    calc(var(--carousel-count) * var(--carousel-duration)) linear infinite;
-
-  --animate-carousel-up: carousel-up
-    calc(var(--carousel-count) * var(--carousel-duration)) linear infinite;
-
-  --animate-carousel-down: carousel-down
-    calc(var(--carousel-count) * var(--carousel-duration)) linear infinite;
+  --animate-carousel-left: carousel-left linear infinite;
+  --animate-carousel-right: carousel-right linear infinite;
+  --animate-carousel-up: carousel-up linear infinite;
+  --animate-carousel-down: carousel-down linear infinite;
 }
 
 @theme {
