@@ -80,7 +80,7 @@ function SVGGradient({
             key={stop}
             offset={percent(stop)}
             className="[stop-color:var(--color)]"
-            style={cssVars({ color: stops[index] }, true)}
+            style={cssVars({ color: stops[index] })}
           />
         ))}
       </linearGradient>
@@ -112,7 +112,7 @@ export function GradientIcon({
       <SVGGradient to={to} stops={stops} id={gradientId} />
       <Comp
         {...props}
-        style={cssVars({ gradient: url(`#${gradientId}`) }, true)}
+        style={cssVars({ gradient: url(`#${gradientId}`) })}
         className={cn("[&_path]:fill-[var(--gradient)]", className)}
       >
         {React.Children.only(children)}
