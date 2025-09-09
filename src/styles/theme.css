@@ -34,6 +34,7 @@
   --chart-3: hsl(197 37% 24%);
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
+  --radius: 0.5rem;
 }
 
 .dark {
@@ -91,10 +92,29 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
+  /* ------------------------------ Border Radius ----------------------------- */
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* -------------------------------- Text Size ------------------------------- */
+
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: var(--text-xs--line-height);
+}
+
+@theme {
+  /* ---------------------------------- Fonts --------------------------------- */
+
+  --font-*: initial;
+  --font-sans: Inter Variable, Arial, Helvetica, sans-serif;
+  --font-display: Inter Variable, Arial, Helvetica, sans-serif;
+
   /* ------------------------------- Animations ------------------------------- */
 
   @keyframes carousel-left {
-    0%: {
+    0% {
       transform: translate3d(0, 0, 0);
     }
     100% {
@@ -129,28 +149,9 @@
     }
   }
 
-  --animate-carousel-left: carousel-left linear infinite;
-  --animate-carousel-right: carousel-right linear infinite;
-  --animate-carousel-up: carousel-up linear infinite;
-  --animate-carousel-down: carousel-down linear infinite;
-}
-
-@theme {
-  /* ---------------------------------- Fonts --------------------------------- */
-
-  --font-*: initial;
-  --font-sans: Inter Variable, Arial, Helvetica, sans-serif;
-  --font-display: Inter Variable, Arial, Helvetica, sans-serif;
-
-  /* -------------------------------- Text Size ------------------------------- */
-
-  --text-2xs: 0.625rem;
-  --text-2xs--line-height: var(--text-xs--line-height);
-
-  /* ------------------------------ Border Radius ----------------------------- */
-
-  --radius: 0.5rem;
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --animate-carousel-left: carousel-left var(--tw-duration, 30s) linear infinite;
+  --animate-carousel-right: carousel-right var(--tw-duration, 30s) linear
+    infinite;
+  --animate-carousel-up: carousel-up var(--tw-duration, 30s) linear infinite;
+  --animate-carousel-down: carousel-down var(--tw-duration, 30s) linear infinite;
 }

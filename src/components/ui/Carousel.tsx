@@ -1,11 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
 
-import { cssVars } from "@/lib/utils";
+import { cn, cssVars } from "@/lib/utils";
 
 const carouselVariants = cva(
   [
-    "relative flex w-max gap-[--spacing(var(--gap))]",
+    "relative duration-(--duration) flex w-max gap-[--spacing(var(--gap))]",
     "*:data-[slot=clone]:absolute *:data-[slot=clone]:top-0 *:data-[slot=clone]:flex *:data-[slot=clone]:gap-[--spacing(var(--gap))]",
   ],
   {
@@ -46,8 +46,12 @@ export function Carousel({
   gap = 4,
 }: CarouselProps) {
   return (
-    <div style={cssVars({ gap, duration })} className={className}>
-      <div className={carouselVariants({ direction })} data-slot="carousel">
+    <div className={className}>
+      <div
+        style={cssVars({ gap, duration: `${duration}s` })}
+        className={carouselVariants({ direction })}
+        data-slot="carousel"
+      >
         {children}
         <div data-slot="clone">{children}</div>
       </div>
