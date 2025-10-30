@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import favicons from "astro-favicons";
 import robots from "astro-robots";
 import { FileSystemIconLoader } from "unplugin-icons/loaders";
@@ -14,6 +14,16 @@ const ORIGIN = "TODO.com";
 // https://astro.build/config
 export default defineConfig({
   site: `https://${ORIGIN}`,
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Inter",
+        cssVariable: "--font-inter",
+        weights: ["400 700"],
+      },
+    ],
+  },
   vite: {
     assetsInclude: [/\.riv$/],
     plugins: [

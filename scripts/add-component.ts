@@ -11,7 +11,7 @@ function addComponent(componentNames: string[]): void {
     // Run the shadcn command
     console.log(`📦 Adding components: ${componentNames}`);
 
-    execSync(`npx shadcn@latest add ${componentNames.join(" ")}`, {
+    execSync(`bunx shadcn@latest add ${componentNames.join(" ")}`, {
       stdio: "inherit",
     });
 

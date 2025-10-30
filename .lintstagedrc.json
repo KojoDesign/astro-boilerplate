@@ -1,4 +1,4 @@
 {
-  "*.{js,jsx,ts,mjs,tsx}": ["biome lint", "prettier --write"],
+  "*.{js,jsx,ts,mjs,tsx}": ["oxlint --type-aware", "prettier --write"],
   "*.{astro,mdx,md,html,postcss,css,json}": "prettier --write"
 }

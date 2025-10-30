@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
 
-import { cn, cssVars } from "@/lib/utils";
+import { cssVars } from "@/lib/utils";
 
 const carouselVariants = cva(
   [

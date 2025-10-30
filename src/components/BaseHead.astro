@@ -1,15 +1,11 @@
 ---
-import "@fontsource-variable/inter";
-
 import "../styles/global.css";
 
+import { Font } from "astro:assets";
+
 import { SEO } from "astro-seo";
-
 import { RIVE_WASM_URL, SITE_TITLE } from "@/consts";
-
 import Preload, { type Props as PreloadProps } from "./Preload.astro";
-
-import inter from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
 
 export interface Props {
   title: string;
@@ -32,8 +28,6 @@ const {
   description,
   image = "/og.png",
 } = Astro.props;
-
-preloadAssets.push(inter);
 ---
 
 {
@@ -41,6 +35,8 @@ preloadAssets.push(inter);
     (typeof x === "string" ? x : x.href).endsWith(".riv"),
   ) && <Preload href={RIVE_WASM_URL} />
 }
+
+<Font cssVariable="--font-inter" preload />
 
 {
   preloadAssets.map((props) =>
