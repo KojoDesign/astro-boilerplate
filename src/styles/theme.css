@@ -114,9 +114,7 @@
 
   --text-2xs: 0.625rem;
   --text-2xs--line-height: var(--text-xs--line-height);
-}
 
-@theme {
   /* ---------------------------------- Fonts --------------------------------- */
 
   --font-*: initial;
@@ -125,45 +123,25 @@
 
   /* ------------------------------- Animations ------------------------------- */
 
-  @keyframes carousel-left {
-    0% {
-      transform: translate3d(0, 0, 0);
+  --animate-marquee: marquee var(--duration) infinite linear;
+
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
     }
-    100% {
-      transform: translate3d(-100%, 0, 0);
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
 
-  @keyframes carousel-right {
-    0% {
-      transform: translate3d(0, 0, 0);
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
     }
-    100% {
-      transform: translate3d(100%, 0, 0);
-    }
-  }
-
-  @keyframes carousel-up {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(0, -100%, 0);
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
-
-  @keyframes carousel-down {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(0, 100%, 0);
-    }
-  }
-
-  --animate-carousel-left: carousel-left var(--tw-duration, 30s) linear infinite;
-  --animate-carousel-right: carousel-right var(--tw-duration, 30s) linear
-    infinite;
-  --animate-carousel-up: carousel-up var(--tw-duration, 30s) linear infinite;
-  --animate-carousel-down: carousel-down var(--tw-duration, 30s) linear infinite;
 }

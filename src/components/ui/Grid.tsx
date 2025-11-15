@@ -2,46 +2,26 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, cssVars } from "@/lib/utils";
+import { px } from "@/lib/units";
 
 const gridVariants = cva("grid", {
   variants: {
     columns: {
-      0: "",
-      1: "grid-cols-1",
-      2: "grid-cols-2",
-      3: "grid-cols-3",
-      4: "grid-cols-4",
-      5: "grid-cols-5",
-      6: "grid-cols-6",
-      7: "grid-cols-7",
-      8: "grid-cols-8",
-      9: "grid-cols-9",
-      10: "grid-cols-10",
-      11: "grid-cols-11",
-      12: "grid-cols-12",
+      true: "grid-cols-(--columns)",
+      false: "",
     },
     rows: {
-      0: "",
-      1: "grid-rows-1",
-      2: "grid-rows-2",
-      3: "grid-rows-3",
-      4: "grid-rows-4",
-      5: "grid-rows-5",
-      6: "grid-rows-6",
-      7: "grid-rows-7",
-      8: "grid-rows-8",
-      9: "grid-rows-9",
-      10: "grid-rows-10",
-      11: "grid-rows-11",
-      12: "grid-rows-12",
+      true: "grid-rows-(--rows)",
+      false: "",
+    },
+    dense: {
+      true: "grid-flow-dense",
+      false: "",
     },
     flow: {
       row: "grid-flow-row",
       column: "grid-flow-col",
-      dense: "grid-flow-dense",
-      rowDense: "grid-flow-row-dense",
-      columnDense: "grid-flow-col-dense",
     },
     alignItems: {
       start: "items-start",
@@ -79,11 +59,23 @@ const gridVariants = cva("grid", {
       none: "",
       sm: "gap-2",
       md: "gap-4",
-      lg: "gap-8",
+      lg: "gap-6",
+      xl: "gap-8",
     },
   },
+  compoundVariants: [
+    {
+      dense: true,
+      flow: "column",
+      className: "grid-flow-col-dense",
+    },
+    {
+      dense: true,
+      flow: "row",
+      className: "grid-flow-row-dense",
+    },
+  ],
   defaultVariants: {
-    rows: 0,
     flow: "row",
     alignItems: "start",
     justifyItems: "start",
@@ -93,53 +85,63 @@ const gridVariants = cva("grid", {
   },
 });
 
-interface GridProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof gridVariants> {
-  asChild?: boolean;
+function resolve(v?: string | number, min: number = 0) {
+  return v === "auto-fit" || v === "auto-fill" || typeof v === "number"
+    ? `repeat(${v}, minmax(${px(min)}, 1fr))`
+    : v;
 }
 
-const Grid = React.forwardRef<HTMLDivElement, GridProps>(
-  (
-    {
-      alignCells,
-      alignItems,
-      asChild,
-      justifyCells,
-      columns,
-      rows,
-      justifyItems,
-      className,
-      gap,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
-    const Component = asChild ? Slot : "div";
+type GridProps = React.ComponentProps<"div"> &
+  Omit<VariantProps<typeof gridVariants>, "columns" | "rows"> & {
+    asChild?: boolean;
+    columns?: string | number | "auto-fit" | "auto-fill";
+    rows?: string | number | "auto-fit" | "auto-fill";
+    minWidth?: number;
+    minHeight?: number;
+  };
 
-    return (
-      <Component
-        ref={ref}
-        {...props}
-        className={cn(
-          gridVariants({
-            alignCells,
-            columns,
-            rows,
-            alignItems,
-            justifyCells,
-            justifyItems,
-            gap,
-          }),
-          className,
-        )}
-      >
-        {children}
-      </Component>
-    );
-  },
-);
+function Grid({
+  alignCells,
+  alignItems,
+  asChild,
+  justifyCells,
+  columns,
+  rows,
+  justifyItems,
+  className,
+  gap,
+  minHeight,
+  minWidth,
+  children,
+  ...props
+}: GridProps) {
+  const Component = asChild ? Slot : "div";
+
+  return (
+    <Component
+      {...props}
+      ref={ref}
+      style={cssVars({
+        columns: resolve(columns, minWidth),
+        rows: resolve(rows, minHeight),
+      })}
+      className={cn(
+        gridVariants({
+          alignCells,
+          columns: columns !== undefined,
+          rows: rows !== undefined,
+          alignItems,
+          justifyCells,
+          justifyItems,
+          gap,
+        }),
+        className,
+      )}
+    >
+      {children}
+    </Component>
+  );
+}
 
 Grid.displayName = "Grid";
 
