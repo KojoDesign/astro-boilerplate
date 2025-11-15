@@ -120,7 +120,6 @@ function Grid({
   return (
     <Component
       {...props}
-      ref={ref}
       style={cssVars({
         columns: resolve(columns, minWidth),
         rows: resolve(rows, minHeight),
