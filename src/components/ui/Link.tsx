@@ -9,8 +9,11 @@ export function Link({
 }: Omit<React.ComponentPropsWithoutRef<"a">, "color"> &
   VariantProps<typeof buttonVariants>) {
   return (
-    <Button variant={variant} size={size} className={className} asChild>
-      <a {...props} />
-    </Button>
+    <Button
+      variant={variant}
+      size={size}
+      className={className}
+      render={<a {...props} />}
+    />
   );
 }

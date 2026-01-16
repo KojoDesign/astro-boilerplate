@@ -1,6 +1,8 @@
 ---
-import { ExampleNavigation } from "@/fragments/ExampleNavigation";
 import type { Props as BaseLayoutProps } from "@/layouts/BaseLayout.astro";
+
+import Navigation from "@/components/Navigation";
+
 import BaseLayout from "./BaseLayout.astro";
 
 export interface Props extends BaseLayoutProps {}
@@ -8,7 +10,7 @@ export interface Props extends BaseLayoutProps {}
 
 <BaseLayout {...Astro.props}>
   <main>
-    <ExampleNavigation client:load />
+    <Navigation url={Astro.url} client:load />
     <slot />
   </main>
 </BaseLayout>

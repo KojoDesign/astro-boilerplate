@@ -1,6 +1,6 @@
-import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
-import * as React from "react";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 
 import { cn } from "@/lib/utils";
 
@@ -16,6 +16,10 @@ const stackVariants = cva("flex", {
     },
     centered: {
       true: "justify-center! items-center!",
+      false: "",
+    },
+    responsive: {
+      true: "max-lg:flex-col",
       false: "",
     },
     align: {
@@ -63,58 +67,45 @@ const stackVariants = cva("flex", {
     orientation: "column",
     align: "start",
     justify: "start",
+    responsive: false,
     gap: "md",
   },
 });
 
-interface StackProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof stackVariants> {
-  asChild?: boolean;
-}
+type StackProps = VariantProps<typeof stackVariants> &
+  useRender.ComponentProps<"div">;
 
-const Stack = React.forwardRef<HTMLDivElement, StackProps>(
-  (
-    {
-      orientation,
-      asChild,
-      align,
-      justify,
-      className,
-      gap,
-      wrap,
-      centered,
-      reverse,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
-    const Component = asChild ? Slot : "div";
-
-    return (
-      <Component
-        {...props}
-        ref={ref}
-        className={cn(
-          stackVariants({
-            centered,
-            wrap,
-            reverse,
-            orientation,
-            align,
-            justify,
-            gap,
-          }),
+function Stack({
+  orientation,
+  render,
+  align,
+  justify,
+  className,
+  gap,
+  wrap,
+  centered,
+  reverse,
+  children,
+  ...props
+}: StackProps) {
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: mergeProps(props, {
+      className: cn(
+        stackVariants({
+          centered,
+          wrap,
+          reverse,
+          orientation,
+          align,
+          justify,
+          gap,
           className,
-        )}
-      >
-        {children}
-      </Component>
-    );
-  },
-);
-
-Stack.displayName = "Stack";
+        }),
+      ),
+    }),
+  });
+}
 
 export { Stack, stackVariants };

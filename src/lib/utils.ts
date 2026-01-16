@@ -7,12 +7,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function cssVars(vars: Record<string, string | number>) {
+export function cssVars(vars: Record<string, undefined | string | number>) {
   return Object.entries(vars).reduce(
     (acc, [key, value]) => {
-      acc[variable(key)] = value.toString();
+      acc[variable(key)] = value ? value.toString() : value;
       return acc;
     },
-    {} as Record<string, string>,
+    {} as Record<string, undefined | number | string>,
   ) as React.CSSProperties;
 }

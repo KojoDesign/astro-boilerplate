@@ -1,4 +1,5 @@
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
@@ -34,6 +35,10 @@ const gridVariants = cva("grid", {
       center: "justify-items-center",
       end: "justify-items-end",
       stretch: "justify-items-stretch",
+    },
+    responsive: {
+      true: "max-lg:grid-cols-1",
+      false: "",
     },
     alignCells: {
       normal: "content-normal",
@@ -81,6 +86,7 @@ const gridVariants = cva("grid", {
     justifyItems: "start",
     alignCells: "normal",
     justifyCells: "normal",
+    responsive: false,
     gap: "md",
   },
 });
@@ -92,7 +98,8 @@ function resolve(v?: string | number, min: number = 0) {
 }
 
 type GridProps = React.ComponentProps<"div"> &
-  Omit<VariantProps<typeof gridVariants>, "columns" | "rows"> & {
+  Omit<VariantProps<typeof gridVariants>, "columns" | "rows"> &
+  useRender.ComponentProps<"div"> & {
     asChild?: boolean;
     columns?: string | number | "auto-fit" | "auto-fill";
     rows?: string | number | "auto-fit" | "auto-fill";
@@ -111,20 +118,20 @@ function Grid({
   className,
   gap,
   minHeight,
+  render,
   minWidth,
   children,
   ...props
 }: GridProps) {
-  const Component = asChild ? Slot : "div";
-
-  return (
-    <Component
-      {...props}
-      style={cssVars({
+  return useRender({
+    defaultTagName: "div",
+    render,
+    props: mergeProps(props, {
+      style: cssVars({
         columns: resolve(columns, minWidth),
         rows: resolve(rows, minHeight),
-      })}
-      className={cn(
+      }),
+      className: cn(
         gridVariants({
           alignCells,
           columns: columns !== undefined,
@@ -133,15 +140,11 @@ function Grid({
           justifyCells,
           justifyItems,
           gap,
+          className,
         }),
-        className,
-      )}
-    >
-      {children}
-    </Component>
-  );
+      ),
+    }),
+  });
 }
-
-Grid.displayName = "Grid";
 
 export { Grid, type GridProps, gridVariants };

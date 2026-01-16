@@ -3,10 +3,6 @@
   padding-inline: 2rem;
 }
 
-@utility blur-in-* {
-  --tw-enter-blur: calc(1px * --value(number));
-}
-
 @utility counter-inc-* {
   counter-increment: --value([*]);
 }
@@ -19,18 +15,17 @@
   counter-set: --value([*]);
 }
 
-@utility stagger-* {
-  --tw-animation-stagger: calc(--value(number) * 1ms);
-}
-
-@utility stagger-from-* {
-  --tw-animation-stagger-from: calc(--value(number) * 1ms);
-}
-
-@utility animate-* {
-  --tw-animation-index: --value(number, [number]);
-  --tw-animation-delay: calc(
-    var(--tw-animation-stagger-from, 0s) +
-      (var(--tw-animation-stagger) * var(--tw-animation-index))
+@utility stop-color-* {
+  stop-color: --value(--color-*, [*]);
+  stop-color: --alpha(
+    --value(--color-*, [*]) /
+      calc(1% * --modifier(--opacity-*, integer, [integer]))
   );
+}
+
+@utility stagger-* {
+  --stagger: calc(--value(integer) * 1ms * sibling-index());
+  --delay: calc(var(--tw-animation-delay, 0) + var(--stagger));
+  animation-fill-mode: both;
+  animation-delay: var(--delay) !important;
 }
