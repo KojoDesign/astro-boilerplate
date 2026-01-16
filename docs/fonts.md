@@ -1,30 +1,48 @@
 # Adding custom fonts
 
-This repository uses [Fontsource](https://fontsource.org/) to import custom fonts from [Google Fonts](https://fonts.google.com), preferring variable fonts where possible. If you can't find the font under the `@fontsource-variable` org, just use the non-variable version under `@fontsource`. Make sure to check the proper font name under the Fontsource website!
+This repository uses **Astro's experimental fonts API** with Google Fonts provider for loading custom fonts.
 
-To add a new font, first add it via NPM:
+## Adding a font
 
-```bash
-pnpm add @fontsource-variable/inter
+Add the font configuration to `astro.config.ts`:
+
+```ts
+export default defineConfig({
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Inter",
+        cssVariable: "--font-inter",
+        weights: ["400 700"],
+      },
+      // Add more fonts here
+    ],
+  },
+  // ... rest of config
+});
 ```
 
-Modify the [`global.css`](../src/styles/global.css) file to reference your new font:
+## Preloading fonts
 
-```css
---font-sans: Inter Variable, Arial, Helvetica, sans-serif;
-```
-
-Then, import and preload it into the layout that will be using the font:
+Fonts are preloaded in `BaseHead.astro` using the `Font` component:
 
 ```astro
 ---
-import inter from "@fontsource-variable/inter";
-import interFile from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import { Font } from "astro:assets";
 ---
 
-<BaseLayout preloadAssets={[interFile]} />
+<Font cssVariable="--font-inter" preload />
 ```
 
-Preloading your font will prevent a fallback font from flashing before your custom font loads. You can learn more about preloading [here](https://fontsource.org/docs/getting-started/preload).
+## Using fonts in CSS
 
-[`BaseLayout`](../src/layouts//BaseLayout.astro) passes its props directly into `BaseHead`, so if you end up modifying `BaseLayout` to preload your font at the highest level, be sure to merge the `preloadAssets` prop with the array of fonts you wish to preload. For most websites, it's actually recommended you load all site-wide fonts inside of `BaseLayout`.
+Reference the font via its CSS variable in your styles:
+
+```css
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+```
+
+Preloading fonts prevents a fallback font from flashing before your custom font loads (FOUT - Flash of Unstyled Text).

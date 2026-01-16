@@ -10,13 +10,13 @@
     "preview": "astro preview",
     "ui": "bun run scripts/add-component.ts",
     "check": "astro check",
-    "utils": "pnpm dlx atmx@latest",
+    "utils": "bun x atmx@latest",
     "prepare": "husky",
     "storybook:dev": "storybook dev -p 6006",
     "storybook:build": "storybook build"
   },
   "engines": {
-    "node": "^22.0.0"
+    "node": "^24.0.0"
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",

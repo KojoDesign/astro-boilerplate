@@ -11,7 +11,7 @@ It allows you to pull in thousands icons from [Iconify](https://iconify.design) 
 First, install the Iconify JSON package for the icon pack you'd like to use:
 
 ```bash
-pnpm add @iconify-json/mdi # Adds the Material Design Icons pack
+bun add @iconify-json/mdi # Adds the Material Design Icons pack
 ```
 
 then use it Astro or React components:

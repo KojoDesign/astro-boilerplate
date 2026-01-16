@@ -8,16 +8,16 @@ To get started, simply hit the "Use This Template" button on this repo to start 
 
 ### Building Blocks
 
-- 📦 **[pnpm](https://pnpm.io)** for package management, as it's much faster and more performant than NPM. It's configured using Corepack, so you should be able to install it via `corepack enable` (this command comes with Node).
+- 📦 **[Bun](https://bun.sh)** for package management and runtime, as it's much faster and more performant than NPM.
 - 🚀 **[Astro](https://astro.build)**, a framework for creating highly-versatile and high-performance webpages. It comes packed with a boatload of features such as partial hydration, content collections, and server endpoints. [See here](https://docs.astro.build/en/concepts/why-astro/) for more.
 - ⚛️ **[React](https://react.dev)** for creating interactive component islands that leverage React's booming ecosystem.
 - 👷 **[TypeScript](https://www.typescriptlang.org/)** for writing type-safe, maintainable code.
 
 ### UI & Styling
 
-- 🪁 **[Tailwind CSS](https://tailwindcss.com)** for modular, consistent CSS styling. Includes plugins such as [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) and [tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate).
-- 🔠 **[Fontsource](https://fontsource.org/)** for loading custom fonts. These can be preloaded via the `preload` prop of [`BaseLayout`](src/layouts/BaseLayout.astro).
-- 📥 **[shadcn-ui](https://ui.shadcn.com/)** for rapidly adding pre-configured UI components to your website.
+- 🪁 **[Tailwind CSS 4](https://tailwindcss.com)** for modular, consistent CSS styling with CSS-based configuration. Includes the official typography plugin.
+- 🔠 **[Astro Fonts API](https://docs.astro.build/en/reference/configuration-reference/#experimentalfonts)** (experimental) for loading Google Fonts with automatic optimization and preloading.
+- 📥 **[shadcn-ui](https://ui.shadcn.com/)** (Base UI variant) for rapidly adding pre-configured UI components to your website.
 - 🦄 **[unplugin-icons](https://github.com/unplugin/unplugin-icons)** for easily inlining thousands of on-demand icons in Astro and React components.
 - ⚒️ Custom component primitives such as [Typography](src/components/ui/Typography.tsx) and [Stack](src/components/ui/Stack.tsx).
 
@@ -28,8 +28,8 @@ To get started, simply hit the "Use This Template" button on this repo to start 
 
 ### Developer Experience
 
-- 📝 **[biome](biomejs.dev)** for lightning-fast linting in JavaScript and TypeScript (written in Rust)
-- 🎨 **[Prettier](prettier.io)** for opinionated formatting (only used because Biome's HTML formatting is [incomplete](https://biomejs.dev/internals/language-support/)).
+- 📝 **[oxlint](https://oxc.rs/)** for lightning-fast linting in JavaScript and TypeScript (written in Rust)
+- 🎨 **[Prettier](prettier.io)** for opinionated formatting across all file types.
 - 🐶 **[Husky](https://github.com/typicode/husky)** with **[lint-staged](https://github.com/lint-staged/lint-staged)** to automatically run linting on new commits.
 
 ## Guides
