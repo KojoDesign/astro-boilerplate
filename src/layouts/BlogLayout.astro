@@ -5,7 +5,7 @@ import { type CollectionEntry, getEntries } from "astro:content";
 import FormattedAuthors from "@/components/FormattedAuthors.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 
-import { Typography } from "@/components/ui/Typography";
+import { Typography } from "@/components/ui/typography";
 import { BLOG_TITLE } from "@/consts";
 import BaseLayout from "./BaseLayout.astro";
 
@@ -20,18 +20,18 @@ const authors = await getEntries(Astro.props.authors);
   <main>
     <article class="mx-auto max-w-3xl px-8 py-32">
       <div
-        class="flex flex-row items-center justify-start gap-4 overflow-scroll pt-8 text-sm font-medium text-muted"
+        class="text-muted flex flex-row items-center justify-start gap-4 overflow-scroll pt-8 text-sm font-medium"
       >
-        <a class="whitespace-nowrap hover:text-subtle" href="/blog">
+        <a class="hover:text-subtle whitespace-nowrap" href="/blog">
           {BLOG_TITLE}
         </a>
         /
-        <a class="whitespace-nowrap text-primary" href={`/blog/${slug}`}>
+        <a class="text-primary whitespace-nowrap" href={`/blog/${slug}`}>
           {title}
         </a>
       </div>
       <div
-        class="prose prose-base max-w-none py-8 text prose-headings:font-semibold prose-h1:mt-8 prose-h1:text-3xl prose-img:mx-auto prose-img:rounded-lg prose-hr:mb-8"
+        class="prose prose-base text prose-headings:font-semibold prose-h1:mt-8 prose-h1:text-3xl prose-img:mx-auto prose-img:rounded-lg prose-hr:mb-8 max-w-none py-8"
       >
         <div class="title">
           <Typography variant="label" size="lg" color="subtle">

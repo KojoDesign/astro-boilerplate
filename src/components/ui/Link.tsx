@@ -1,5 +1,5 @@
 import type { VariantProps } from "class-variance-authority";
-import { Button, type buttonVariants } from "./Button";
+import { Button, type buttonVariants } from "./button";
 
 export function Link({
   variant = "link",

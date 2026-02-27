@@ -15,6 +15,7 @@ const ORIGIN = "TODO.com";
 export default defineConfig({
   site: `https://${ORIGIN}`,
   experimental: {
+    liveContentCollections: true,
     fonts: [
       {
         provider: fontProviders.google(),

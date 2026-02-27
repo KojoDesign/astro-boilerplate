@@ -1,4 +1,9 @@
-import { Slot } from "@radix-ui/react-slot";
+import {
+  useRender,
+  type UseRenderComponentProps,
+} from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
+
 import * as React from "react";
 
 import { percent, url } from "@/lib/units";
@@ -66,7 +71,6 @@ function SVGGradient({
   }, [direction]);
 
   return (
-    // biome-ignore lint/a11y/noSvgWithoutTitle: Only used for the gradient
     <svg className="sr-only">
       <linearGradient
         id={id}
@@ -79,7 +83,7 @@ function SVGGradient({
           <stop
             key={stop}
             offset={percent(stop)}
-            className="[stop-color:var(--color)]"
+            className="stop-color-(--color)"
             style={cssVars({ color: stops[index] })}
           />
         ))}
@@ -88,16 +92,15 @@ function SVGGradient({
   );
 }
 
-interface GradientIconProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    Omit<SVGGradientProps, "id"> {
-  children: React.ReactNode;
-  asChild?: boolean;
-}
+type GradientIconProps = React.ComponentProps<"svg"> &
+  Omit<SVGGradientProps, "id"> &
+  UseRenderComponentProps<"div"> & {
+    children: React.ReactNode;
+  };
 
 export function GradientIcon({
   className,
-  asChild,
+  render,
   children,
   to,
   stops,
@@ -105,18 +108,19 @@ export function GradientIcon({
 }: GradientIconProps) {
   const id = React.useId();
   const gradientId = `gradient-${id}`;
-  const Comp = asChild ? Slot : "span";
+  const svg = useRender({
+    render,
+    props: mergeProps(props, {
+      children: React.Children.only(children),
+      style: cssVars({ gradient: url(`#${gradientId}`) }),
+      className: cn("[&_path]:fill-(--gradient)", className),
+    }),
+  });
 
   return (
     <>
       <SVGGradient to={to} stops={stops} id={gradientId} />
-      <Comp
-        {...props}
-        style={cssVars({ gradient: url(`#${gradientId}`) })}
-        className={cn("[&_path]:fill-[var(--gradient)]", className)}
-      >
-        {React.Children.only(children)}
-      </Comp>
+      {svg}
     </>
   );
 }

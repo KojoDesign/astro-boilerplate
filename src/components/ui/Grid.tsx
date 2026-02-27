@@ -100,7 +100,6 @@ function resolve(v?: string | number, min: number = 0) {
 type GridProps = React.ComponentProps<"div"> &
   Omit<VariantProps<typeof gridVariants>, "columns" | "rows"> &
   useRender.ComponentProps<"div"> & {
-    asChild?: boolean;
     columns?: string | number | "auto-fit" | "auto-fill";
     rows?: string | number | "auto-fit" | "auto-fill";
     minWidth?: number;
@@ -110,7 +109,6 @@ type GridProps = React.ComponentProps<"div"> &
 function Grid({
   alignCells,
   alignItems,
-  asChild,
   justifyCells,
   columns,
   rows,
