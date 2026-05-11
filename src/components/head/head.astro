@@ -1,0 +1,11 @@
+---
+import "@/styles/global.css";
+
+import Meta, { type Props as MetaProps } from "./meta.astro";
+import Fonts from "./fonts.astro";
+
+export interface Props extends MetaProps {}
+---
+
+<Meta {...Astro.props} />
+<Fonts />

@@ -15,15 +15,6 @@
   counter-set: --value([*]);
 }
 
-@utility border-hairline {
-  border-width: 1px;
-
-  @media only screen and (min-device-pixel-ratio: 2),
-    only screen and (min-resolution: 192dpi) {
-    border-width: 0.5px;
-  }
-}
-
 @utility stop-color-* {
   stop-color: --value(--color-*, [*]);
   stop-color: --alpha(

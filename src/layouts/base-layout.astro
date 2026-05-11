@@ -1,0 +1,15 @@
+---
+import Head, { type Props as HeadProps } from "@/components/head";
+
+export interface Props extends HeadProps {}
+---
+
+<!doctype html>
+<html lang="en" class="relative">
+  <head>
+    <Head {...Astro.props} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

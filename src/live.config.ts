@@ -5,3 +5,4 @@
 // const paymentLinks = defineLiveCollection({ loader: paymentLinkLoader() });
 
 // export const collections = { products, paymentLinks };
+export const collections = {};

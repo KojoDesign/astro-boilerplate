@@ -6,37 +6,28 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import favicons from "astro-favicons";
 import robots from "astro-robots";
-import { FileSystemIconLoader } from "unplugin-icons/loaders";
 import icons from "unplugin-icons/vite";
 
-const ORIGIN = "TODO.com";
+const ORIGIN = process.env.ORIGIN ?? "CHANGE_ME.com";
 
 // https://astro.build/config
 export default defineConfig({
   site: `https://${ORIGIN}`,
-  experimental: {
-    liveContentCollections: true,
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Inter",
-        cssVariable: "--font-inter",
-        weights: ["400 700"],
-      },
-    ],
-  },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Inter",
+      cssVariable: "--ff-sans",
+      weights: ["400 700"],
+    },
+  ],
   vite: {
     assetsInclude: [/\.riv$/],
     plugins: [
       // @ts-expect-error https://github.com/withastro/astro/issues/14030
       tailwindcss(),
       // @ts-expect-error
-      icons({
-        compiler: "jsx",
-        customCollections: {
-          assets: FileSystemIconLoader("./src/assets/svg"),
-        },
-      }),
+      icons({ compiler: "jsx" }),
     ],
   },
   integrations: [
