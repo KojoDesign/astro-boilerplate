@@ -1,8 +1,6 @@
-import { forwardRef } from "react";
-
 import { cn } from "@/lib/utils";
-import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
+import { mergeProps, useRender } from "@base-ui/react";
 
 export const typographyVariants = cva("", {
   variants: {
@@ -217,40 +215,38 @@ const tagVariants = cva("", {
   ],
 });
 
-export interface TypographyProps
-  extends Omit<React.HTMLAttributes<HTMLParagraphElement>, "color">,
-    VariantProps<typeof typographyVariants> {
-  asChild?: boolean;
+export type TypographyProps = Omit<
+  React.HTMLAttributes<HTMLParagraphElement>,
+  "color"
+> &
+  VariantProps<typeof typographyVariants> &
+  useRender.ComponentProps<"p">;
+
+function Typography({
+  className,
+  variant,
+  color,
+  align,
+  render,
+  size,
+  ...props
+}: TypographyProps) {
+  return useRender({
+    defaultTagName: "p",
+    render,
+    props: mergeProps(props, {
+      className: cn(
+        typographyVariants({
+          variant,
+          align,
+          color,
+          size,
+        }),
+        className,
+      ),
+    }),
+  });
 }
-
-const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
-  (
-    { className, variant, color, align, size, asChild = false, ...props },
-    ref,
-  ) => {
-    let Comp = asChild ? Slot : "p";
-
-    if (!asChild) {
-      Comp = tagVariants({ variant, size });
-    }
-
-    return (
-      <Comp
-        className={cn(
-          typographyVariants({
-            variant,
-            align,
-            color,
-            size,
-          }),
-          className,
-        )}
-        {...props}
-        ref={ref}
-      />
-    );
-  },
-);
 
 Typography.displayName = "Typography";
 

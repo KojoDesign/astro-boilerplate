@@ -2,12 +2,12 @@
 import { Image } from "astro:assets";
 import { type CollectionEntry, getEntries } from "astro:content";
 
-import FormattedAuthors from "@/components/FormattedAuthors.astro";
-import FormattedDate from "@/components/FormattedDate.astro";
+import FormattedAuthors from "@/components/formatted-authors.astro";
+import FormattedDate from "@/components/formatted-date.astro";
 
 import { Typography } from "@/components/ui/typography";
 import { BLOG_TITLE } from "@/consts";
-import BaseLayout from "./BaseLayout.astro";
+import BaseLayout from "./base-layout.astro";
 
 type Props = CollectionEntry<"blog">["data"] & { slug: string };
 
@@ -16,7 +16,11 @@ const { title, subtitle, date, image, slug } = Astro.props;
 const authors = await getEntries(Astro.props.authors);
 ---
 
-<BaseLayout title={title} image={image.src} description={subtitle}>
+<BaseLayout
+  title={title}
+  image={{ src: image, alt: title }}
+  description={subtitle}
+>
   <main>
     <article class="mx-auto max-w-3xl px-8 py-32">
       <div

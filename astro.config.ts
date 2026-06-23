@@ -8,7 +8,7 @@ import favicons from "astro-favicons";
 import robots from "astro-robots";
 import icons from "unplugin-icons/vite";
 
-const ORIGIN = process.env.ORIGIN ?? "CHANGE_ME.com";
+const ORIGIN = process.env.ORIGIN ?? "example.com";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,12 +23,7 @@ export default defineConfig({
   ],
   vite: {
     assetsInclude: [/\.riv$/],
-    plugins: [
-      // @ts-expect-error https://github.com/withastro/astro/issues/14030
-      tailwindcss(),
-      // @ts-expect-error
-      icons({ compiler: "jsx" }),
-    ],
+    plugins: [tailwindcss(), icons({ compiler: "jsx" })],
   },
   integrations: [
     react(),

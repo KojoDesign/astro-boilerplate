@@ -1,3 +1,6 @@
 [tools]
 bun = "latest"
 node = "lts"
+
+[shell_alias]
+vp = "./node_modules/.bin/vp"

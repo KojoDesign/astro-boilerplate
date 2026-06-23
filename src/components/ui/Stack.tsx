@@ -85,7 +85,6 @@ function Stack({
   wrap,
   centered,
   reverse,
-  children,
   ...props
 }: StackProps) {
   return useRender({
