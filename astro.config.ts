@@ -3,9 +3,9 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, fontProviders } from "astro/config";
 import favicons from "astro-favicons";
 import robots from "astro-robots";
+import { defineConfig, envField, fontProviders } from "astro/config";
 import icons from "unplugin-icons/vite";
 
 const ORIGIN = process.env.ORIGIN ?? "example.com";
@@ -13,6 +13,16 @@ const ORIGIN = process.env.ORIGIN ?? "example.com";
 // https://astro.build/config
 export default defineConfig({
   site: `https://${ORIGIN}`,
+  env: {
+    schema: {
+      SITE_ORIGIN: envField.string({
+        access: "public",
+        context: "client",
+        default: `https://${ORIGIN}`,
+        url: true,
+      }),
+    },
+  },
   fonts: [
     {
       provider: fontProviders.google(),
@@ -32,10 +42,7 @@ export default defineConfig({
     favicons(),
     robots({
       host: ORIGIN,
-      sitemap: [
-        `https://${ORIGIN}/sitemap-index.xml`,
-        `https://www.${ORIGIN}/sitemap-index.xml`,
-      ],
+      sitemap: [`https://${ORIGIN}/sitemap-index.xml`, `https://www.${ORIGIN}/sitemap-index.xml`],
       policy: [
         {
           userAgent: [

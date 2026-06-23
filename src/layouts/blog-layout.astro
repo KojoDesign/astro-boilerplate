@@ -5,7 +5,8 @@ import { type CollectionEntry, getEntries } from "astro:content";
 import FormattedAuthors from "@/components/formatted-authors.astro";
 import FormattedDate from "@/components/formatted-date.astro";
 
-import { Typography } from "@/components/ui/typography";
+import { Heading } from "@/components/ui/heading";
+import { Paragraph } from "@/components/ui/paragraph";
 import { BLOG_TITLE } from "@/consts";
 import BaseLayout from "./base-layout.astro";
 
@@ -38,13 +39,18 @@ const authors = await getEntries(Astro.props.authors);
         class="prose prose-base text prose-headings:font-semibold prose-h1:mt-8 prose-h1:text-3xl prose-img:mx-auto prose-img:rounded-lg prose-hr:mb-8 max-w-none py-8"
       >
         <div class="title">
-          <Typography variant="label" size="lg" color="subtle">
+          <Paragraph variant="label" size="lg" color="subtle">
             <FormattedDate date={date} />
-          </Typography>
+          </Paragraph>
 
-          <Typography variant="display" size="md" className="not-prose mb-8">
+          <Heading
+            level={1}
+            variant="display"
+            size="md"
+            className="not-prose mb-8"
+          >
             {title}
-          </Typography>
+          </Heading>
 
           <div class="not-prose flex flex-row items-center gap-4">
             <div class="flex flex-row items-center -space-x-4">
@@ -59,14 +65,13 @@ const authors = await getEntries(Astro.props.authors);
               }
             </div>
 
-            <Typography
-              variant="body"
+            <Paragraph
               className="font-medium"
               size="md"
               color="subtle"
             >
               <FormattedAuthors includeLinks authors={authors} />
-            </Typography>
+            </Paragraph>
           </div>
 
           <hr class="not-prose mt-8" />

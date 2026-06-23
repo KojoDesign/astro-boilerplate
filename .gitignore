@@ -27,3 +27,4 @@ pnpm-debug.log*
 .vercel/
 *storybook.log
 storybook-static
+.vite-hooks/

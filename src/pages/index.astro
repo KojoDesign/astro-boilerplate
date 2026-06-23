@@ -1,15 +1,16 @@
 ---
-import { Typography } from "@/components/ui/typography";
+import { Heading } from "@/components/ui/heading";
 
 import PageLayout from "@/layouts/page-layout.astro";
 ---
 
 <PageLayout title="Home">
-  <Typography
+  <Heading
+    level={1}
     variant="display"
     size="lg"
     className="animate-in fade-in duration-10000"
   >
     Hero text
-  </Typography>
+  </Heading>
 </PageLayout>

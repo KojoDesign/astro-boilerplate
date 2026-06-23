@@ -11,13 +11,7 @@ export default defineConfig({
     sortPackageJson: true,
   },
   lint: {
-    jsPlugins: [
-      { name: "vite-plus", specifier: "vite-plus/oxlint-plugin" },
-      "import",
-      "react",
-      "react-perf",
-      "vitest",
-    ],
+    jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
     rules: { "vite-plus/prefer-vite-plus-imports": "error" },
     options: { typeAware: true, typeCheck: true },
   },
