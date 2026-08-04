@@ -2,8 +2,8 @@
 
 @plugin "@tailwindcss/typography";
 
-@variant dark (&:where(.dark, .dark *));
-@variant in-view (:where(*:is([data-in-view])) &);
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant in-view (:where(*:is([data-in-view])) &);
 
 /* -------------------------------------------------------------------------- */
 /*                                    Theme                                   */
@@ -39,6 +39,12 @@
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
   --radius: 0.5rem;
+  --hairline: 1px;
+
+  @media only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi) {
+    --hairline: 0.5px;
+  }
 }
 
 .dark {
@@ -120,6 +126,11 @@
   --font-*: initial;
   --font-sans: Inter Variable, Arial, Helvetica, sans-serif;
   --font-display: Inter Variable, Arial, Helvetica, sans-serif;
+
+  /* ------------------------------ Border Width ------------------------------ */
+
+  --border-width-hairline: var(--hairline);
+  --ring-width-hairline: var(--hairline);
 
   /* ------------------------------- Animations ------------------------------- */
 

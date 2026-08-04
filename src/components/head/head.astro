@@ -1,0 +1,129 @@
+---
+import "@/styles/global.css";
+
+import { merge } from "es-toolkit";
+import { useHead, useSeoMeta } from "astro-unhead";
+import type { ImageMetadata } from "astro";
+import type { CollectionEntry } from "astro:content";
+
+import { getSingleton } from "@/lib/content";
+
+import Fonts from "./fonts.astro";
+
+type SEOData = CollectionEntry<"seo">["data"];
+
+export interface PreloadAttributes {
+  href: string;
+  as?: "font" | "fetch" | "style" | "script";
+  crossorigin?: "" | "anonymous" | "use-credentials";
+  type?: string;
+}
+
+export type Preload = PreloadAttributes | string;
+
+export interface Props extends Partial<Omit<SEOData, "siteName">> {
+  preload?: Preload[];
+  titleTemplate?: string;
+}
+
+const { titleTemplate, preload = [], ...props } = Astro.props;
+
+const seo = await getSingleton("seo");
+const data = merge(seo.data, props ?? {});
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const openGraph = data.opengraph ?? {};
+const twitter = data.twitter ?? {};
+const openGraphImage = openGraph.image ?? data.image;
+const twitterImage = twitter.image ?? data.image;
+
+function getImageMimeType(format: ImageMetadata["format"]) {
+  switch (format) {
+    case "avif":
+      return "image/avif" as const;
+    case "gif":
+      return "image/gif" as const;
+    case "jpg":
+    case "jpeg":
+      return "image/jpeg" as const;
+    case "png":
+      return "image/png" as const;
+    case "webp":
+      return "image/webp" as const;
+    default:
+      return undefined;
+  }
+}
+
+const preloads = preload.map((link) => {
+  let { href, as, crossorigin, type }: PreloadAttributes =
+    typeof link === "string" ? { href: link } : link;
+
+  const extension = href.split(".").pop();
+
+  if (!as) {
+    switch (extension) {
+      case "css":
+        as = "style";
+        break;
+      case "js":
+        as = "script";
+        break;
+      case "ttf":
+      case "otf":
+      case "woff":
+      case "woff2":
+        as = "font";
+        break;
+      default:
+        as = "fetch";
+        break;
+    }
+  }
+
+  type ??= as ? `${as}/${extension}` : undefined;
+
+  return {
+    rel: "preload" as const,
+    href,
+    as: as as any,
+    type,
+    crossorigin,
+  };
+});
+
+useHead({
+  title: data.title,
+  titleTemplate,
+  link: [{ rel: "canonical", href: canonical }],
+});
+
+useHead({ link: preloads });
+
+useSeoMeta({
+  title: data.title,
+  description: data.description,
+  ogTitle: openGraph.title ?? data.title,
+  ogDescription: openGraph.description ?? data.description,
+  ogType: openGraph.type ?? "website",
+  ogImage: openGraphImage.src.src,
+  ogImageAlt: openGraphImage.alt,
+  ogImageWidth: openGraphImage.src.width,
+  ogImageHeight: openGraphImage.src.height,
+  ogImageType: getImageMimeType(openGraphImage.src.format),
+  ogUrl: canonical,
+  ogSiteName: openGraph.siteName ?? data.siteName,
+  ogAudio: openGraph.audio,
+  ogLocale: openGraph.locale,
+  ogLocaleAlternate: openGraph.localeAlternate,
+  ogVideo: openGraph.video,
+  twitterCard: twitter.card ?? "summary_large_image",
+  twitterSite: twitter.site ?? data.siteName,
+  twitterCreator: twitter.creator,
+  twitterTitle: twitter.title ?? data.title,
+  twitterDescription: twitter.description ?? data.description,
+  twitterImage: twitterImage.src.src,
+  twitterImageAlt: twitterImage.alt,
+});
+---
+
+<Fonts />

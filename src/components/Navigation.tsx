@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { useIsScrolling } from "../hooks/useIsScrolling";
-import { Button } from "./ui/Button";
+import { useIsScrolling } from "../hooks/use-is-scrolling";
+import { Button } from "./ui/button";
 import { Close, Menu } from "@/icons";
 
 interface NavigationProps {

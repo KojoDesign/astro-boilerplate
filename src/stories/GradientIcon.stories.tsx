@@ -1,5 +1,5 @@
 import type { Meta, StoryFn } from "@storybook/react-vite";
-import { GradientIcon } from "@/components/ui/GradientIcon";
+import { GradientIcon } from "@/components/ui/gradient-icon";
 import Add from "~icons/mdi/add";
 
 const meta = {
